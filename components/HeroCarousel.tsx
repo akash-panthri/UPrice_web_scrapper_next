@@ -13,7 +13,13 @@ const heroImages = [
 export default function HeroCarousel() {
   return (
     <div>
-      <Carousel>
+      <Carousel 
+      showThumbs={false}
+        autoPlay
+        infiniteLoop
+        interval={2000}
+        showArrows={false}
+        showStatus={false}>
       {heroImages.map((image) => (
           <Image 
             src={image.imgUrl}
