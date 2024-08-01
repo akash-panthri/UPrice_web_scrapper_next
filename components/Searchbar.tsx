@@ -19,7 +19,13 @@ const isValidAmazonProductURL = (url: string) => {
 
 export default function Searchbar() {
   const [searchPrompt, setSearchPrompt] = useState("");
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {};
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const isValidLink = isValidAmazonProductURL(searchPrompt);
+
+    if (!isValidLink) return alert("Please provide a valid Amazon link");
+  };
   return (
     <form className="flex flex-wrap gap-4 mt-12" onSubmit={handleSubmit}>
       <input
