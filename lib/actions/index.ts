@@ -32,6 +32,12 @@ export async function scrapeAndStoreProduct(productUrl: string) {
       }
     }
 
+    const newProduct = await Product.findOneAndUpdate(
+      { url: scrapedProduct.url },
+      product,
+      { upsert: true, new: true }
+    );
+    
 
   } catch (error: any) {
     throw new Error(`Failed to create/update product: ${error.message}`)
