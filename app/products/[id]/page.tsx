@@ -5,6 +5,7 @@ import { Product } from "@/types";
 import { getProductById } from "@/lib/actions"
 import { formatNumber } from "@/lib/utils";
 import { redirect } from "next/navigation";
+import PriceInfoCard from "@/components/PriceInfoCard";
 
 type Props = {
   params: { id: string }
@@ -118,6 +119,32 @@ const ProductDetail=async ({ params: { id } }: Props)=> {
                 <span className="text-primary-green font-semibold">93% </span> of
                 buyers have recommeded this.
               </p>
+            </div>
+          </div>
+
+
+          <div className="my-7 flex flex-col gap-5">
+            <div className="flex gap-5 flex-wrap">
+              <PriceInfoCard 
+                title="Current Price"
+                iconSrc="/assets/icons/price-tag.svg"
+                value={`${product.currency} ${formatNumber(product.currentPrice)}`}
+              />
+              <PriceInfoCard 
+                title="Average Price"
+                iconSrc="/assets/icons/chart.svg"
+                value={`${product.currency} ${formatNumber(product.averagePrice)}`}
+              />
+              <PriceInfoCard 
+                title="Highest Price"
+                iconSrc="/assets/icons/arrow-up.svg"
+                value={`${product.currency} ${formatNumber(product.highestPrice)}`}
+              />
+              <PriceInfoCard 
+                title="Lowest Price"
+                iconSrc="/assets/icons/arrow-down.svg"
+                value={`${product.currency} ${formatNumber(product.lowestPrice)}`}
+              />
             </div>
           </div>
           </div>
