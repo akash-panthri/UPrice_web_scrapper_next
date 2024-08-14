@@ -2,7 +2,7 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types";
-import { getProductById } from "@/lib/actions"
+import { getProductById,getSimilarProducts } from "@/lib/actions"
 import { formatNumber } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import PriceInfoCard from "@/components/PriceInfoCard";
@@ -15,6 +15,7 @@ const ProductDetail=async ({ params: { id } }: Props)=> {
   const product: Product = await getProductById(id);
 
   if(!product) redirect('/')
+    const similarProducts = await getSimilarProducts(id);
   return (
     <div className="product-container">
       <div className="flex gap-28 xl:flex-row flex-col">
