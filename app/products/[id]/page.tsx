@@ -6,6 +6,7 @@ import { getProductById,getSimilarProducts } from "@/lib/actions"
 import { formatNumber } from "@/lib/utils";
 import { redirect } from "next/navigation";
 import PriceInfoCard from "@/components/PriceInfoCard";
+import ProductCard from "@/components/ProductCard";
 
 type Props = {
   params: { id: string }
@@ -175,6 +176,20 @@ const ProductDetail=async ({ params: { id } }: Props)=> {
           </Link>
         </button>
       </div>
+
+      {similarProducts && similarProducts?.length > 0 && (
+        <div className="py-14 flex flex-col gap-2 w-full">
+          <p className="section-text">Similar Products</p>
+
+          <div className="flex flex-wrap gap-10 mt-7 w-full">
+            {similarProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
+        </div>
+      )}
+
+
           </div>
   )
 }
