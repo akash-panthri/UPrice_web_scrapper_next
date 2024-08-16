@@ -2,6 +2,7 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "@/types";
+import Modal from "@/components/Modal";
 import { getProductById,getSimilarProducts } from "@/lib/actions"
 import { formatNumber } from "@/lib/utils";
 import { redirect } from "next/navigation";
@@ -149,7 +150,7 @@ const ProductDetail=async ({ params: { id } }: Props)=> {
               />
             </div>
           </div>
-          modal
+          <Modal productId={id} />
           </div>
           </div>
           <div className="flex flex-col gap-16">
